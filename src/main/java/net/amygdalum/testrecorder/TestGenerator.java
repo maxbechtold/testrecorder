@@ -78,6 +78,7 @@ public class TestGenerator implements SnapshotConsumer {
 	private static final String TEST_FILE = "package <package>;\n\n"
 		+ "<imports: {pkg | import <pkg>;\n}>"
 		+ "\n\n\n"
+		+ "@SuppressWarnings(\"unused\")\n"
 		+ "<runner>"
 		+ "public class <className> {\n"
 		+ "\n"
@@ -290,6 +291,7 @@ public class TestGenerator implements SnapshotConsumer {
 			Future<Void> waiting = executor.submit(runnable, null);
 			waiting.get();
 		} catch (InterruptedException | ExecutionException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
